@@ -1,33 +1,28 @@
-part of 'login_bloc.dart';
+import 'package:equatable/equatable.dart';
 
 abstract class LoginState extends Equatable {
   const LoginState();
-}
 
-class LoginInitial extends LoginState {
   @override
   List<Object> get props => [];
 }
 
-class LoadingLoginState extends LoginState {
-  @override
-  List<Object?> get props => throw UnimplementedError();
-}
+class LoginInitial extends LoginState {}
 
-class LoggedInState extends LoginState {
-  final String username;
+class LoginLoading extends LoginState {}
 
-  const LoggedInState(this.username);
+class LoginSuccess extends LoginState {
+  final String token;
+  const LoginSuccess({required this.token});
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object> get props => [token];
 }
 
-class LoginErrorState extends LoginState {
+class LoginFailure extends LoginState {
   final String error;
-
-  const LoginErrorState(this.error);
+  const LoginFailure({required this.error});
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object> get props => [error];
 }
